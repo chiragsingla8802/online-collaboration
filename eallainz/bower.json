@@ -1,0 +1,26 @@
+{
+  "name": "eallainz",
+  "homepage": "https://github.com/chiragsingla8802/online-collaboration",
+  "authors": [
+    "chiragsingla8802 <chirag.singla8802@gmail.com>"
+  ],
+  "description": "this is an angular application",
+  "main": "index.html",
+  "keywords": [
+    "online-collaboration"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "angular": "^1.6.3",
+    "angular-route": "^1.6.3"
+  }
+}
