@@ -1,4 +1,4 @@
-/*package com.niit.onlinecollaboration.initializer;
+package com.niit.onlinecollaboration.initializer;
 
 import javax.servlet.Filter;
 
@@ -33,4 +33,3 @@ public class MVCWebApplicationInitializer extends AbstractAnnotationConfigDispat
 	
 	
 }
-*/

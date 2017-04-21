@@ -1,4 +1,4 @@
-/*package com.niit.onlinecollaboration.config;
+package com.niit.onlinecollaboration.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -35,4 +35,3 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
       configurer.enable();
     }  
 }
-*/

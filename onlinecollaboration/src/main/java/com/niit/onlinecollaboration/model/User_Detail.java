@@ -78,7 +78,7 @@ public class User_Detail implements Serializable {
 	}
 	
 	@Id
-	@Size(min=1)
+	//@Size(min=1)
 	private int userId;
 	@NotEmpty
 	private String name;
