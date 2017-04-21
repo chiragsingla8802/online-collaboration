@@ -2,6 +2,8 @@ package com.niit.onlinecollaboration.test;
 
 import static org.junit.Assert.assertEquals;
 
+import java.time.LocalDate;
+
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -20,7 +22,9 @@ public class UserTestCase {
 	context = new AnnotationConfigApplicationContext();
 	context.scan("com.niit.onlinecollaboration");
 	context.refresh();
+	System.out.println("---------------------------------reached before bean----------------------------");
 	userDao = (UserDao)context.getBean("userDao");
+	System.out.println("---------------------------------reached after bean----------------------------");
 	}
 	
 	
@@ -29,16 +33,22 @@ public class UserTestCase {
 		user = new User_Detail();
 		
 		user.setAddress("delhi");
-		user.setUserId(3);
+		user.setUserId(1);
 	    user.setState("haryana");
 		user.setCity("faridabad");
 		user.setEmail("chirag.singla8802@gmail.com");
 		user.setName("chirag");
 		user.setPassword("chirag1234");
-		user.setPhoneNo("8802");
+		user.setPhoneNo("9891");
 		user.setActive(true);
 		user.setRole("Staff");
-		assertEquals("Successfully added a product inside the table!",true,userDao.update(user));
+		user.setIsOnline("Staff");
+		user.setUserName("Staff");
+		user.setGender('m');
+		user.setStatus("approved");
+		user.setProfile("chirag");
+		user.setBirthDate(LocalDate.parse("1994-05-08"));
+		assertEquals("Successfully added a product inside the table!",true,userDao.add(user));
 	}*/
 	
 	/*@Test
@@ -62,15 +72,15 @@ public class UserTestCase {
 	public void testDeletServices(){
 		
 		
-		assertEquals("Successfully delete a single category in the table!",true,userDao.delete(3));
+		assertEquals("Successfully delete a single category in the table!",true,userDao.delete(9));
 }*/
 	
 	/*@Test
 	public void testListServices(){
 		
 		assertEquals("Successfully fetched a list of services from the table!",1,userDao.userlist().size());
-	}
-	*/
+	}*/
+	
 }
 
 	

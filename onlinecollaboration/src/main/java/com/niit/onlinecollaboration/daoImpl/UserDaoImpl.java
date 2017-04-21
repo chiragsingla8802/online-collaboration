@@ -18,7 +18,8 @@ public class UserDaoImpl implements UserDao {
 	
 	@Override
 	public boolean add(User_Detail user) {
-		try {			
+		try {	
+			System.out.println("--------------data is being added------------------");
 			sessionFactory.getCurrentSession().persist(user);
 			return true;
 		} catch (Exception ex) {
