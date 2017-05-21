@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.niit.onlinecollaboration.dao.BlogDao;
 import com.niit.onlinecollaboration.model.Blog;
 import com.niit.onlinecollaboration.model.DomainResponse;
-import com.niit.onlinecollaboration.model.User_Detail;
 
 @RestController
 @RequestMapping("/blog")
@@ -63,7 +61,7 @@ public class BlogController {
 		currentBlog.setNoOfLikes(blog.getNoOfLikes());
 		currentBlog.setNoOfViews(blog.getNoOfViews());
 		currentBlog.setPostDate(blog.getPostDate());
-		currentBlog.setUserId(blog.getUserId());
+//		currentBlog.setUserId(blog.getUserId());
 		currentBlog.setUserName(blog.getUserName());
 		
 		blogDao.updateBlog(currentBlog);
@@ -77,6 +75,28 @@ public class BlogController {
 		blog=blogDao.getBlog(id);
 		blogDao.deleteBlog(blog); 
 		return new ResponseEntity<DomainResponse>(new DomainResponse("deleted the data",100), HttpStatus.OK);
+
+	}
+	
+	@RequestMapping(value = "/accept_blog/{id}")
+	public ResponseEntity<DomainResponse> accept(@PathVariable int id) {
+		Blog blog = updateStatus(id, "Approved");
+		return new ResponseEntity<DomainResponse>(new DomainResponse("accepted the blog",100), HttpStatus.OK);
+
+	}
+
+	@RequestMapping(value = "/reject_blog/{id}}")
+	public ResponseEntity<DomainResponse> reject(@PathVariable int id) {
+		Blog blog = updateStatus(id, "Rejected");
+		return new ResponseEntity<DomainResponse>(new DomainResponse("rejected the blog",100), HttpStatus.OK);
+
+	}
+	
+	private Blog updateStatus(int blogId, String blogStatus) {
+		Blog blog = blogDao.getBlog(blogId);
+			blog.setBlogStatus(blogStatus);
+			blogDao.updateBlog(blog);
+		return blog;
 
 	}
 

@@ -4,8 +4,10 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.constraints.Size;
+import javax.persistence.SequenceGenerator;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -77,8 +79,8 @@ public class User_Detail implements Serializable {
 		this.role = role;
 	}
 	
-	@Id
-	//@Size(min=1)
+	@Id @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="generator")
+	@SequenceGenerator(name="generator", sequenceName="USER_SEQ", allocationSize = 1)
 	private int userId;
 	@NotEmpty
 	private String name;
@@ -88,9 +90,9 @@ public class User_Detail implements Serializable {
 	private String email;
 	@NotEmpty
 	private String address;
-	@NotEmpty
+	//@NotEmpty
 	private String city;
-	@NotEmpty
+	//@NotEmpty
 	private String state;
 	@NotEmpty
 	private String phoneNo;
@@ -135,7 +137,7 @@ public class User_Detail implements Serializable {
 		return serialVersionUID;
 	}
 
-	@NotEmpty
+	//@NotEmpty
 	private String role;
 	private String isOnline;
 	private String userName;
