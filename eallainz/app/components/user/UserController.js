@@ -23,9 +23,7 @@ app
 								city : '',
 								state : '',
 								isOnline : '',
-								role : '',
-								errorCode : '',
-								errorMessage : ''							
+								role : ''							
 							};
 
 							self.currentUser = {
@@ -116,7 +114,7 @@ app
 							self.reject = function(id) {
 								console.log("reject...")
 								var reason = prompt("Please enter the reason");
-								UserService.reject(id, reason).then(
+								UserService.reject(id).then(
 										function(d) {
 											self.user = d;
 											self.fetchAllUsers
@@ -163,19 +161,8 @@ app
 												function(d) {
 
 													self.user = d;
-													//console.log("user.errorCode: "+ self.user.errorCode)
-													// if (self.user.errorCode == "404")
-
-													// {
-													// 	alert(self.user.errorMessage)
-
-													// 	self.user.id = "";
-													// 	self.user.password = "";
-
-													// } else { // valid
-																// credentials
 														console.log("Valid credentials. Navigating to home page")
-  
+
 														if(self.user.role=="admin")	
 															{
 															console.log("You are admin")
@@ -204,10 +191,10 @@ app
 							self.logout = function() {
 								console.log("logout")
 								alert("you have been successfully logged out")
-							//	$rootScope.currentUser = {};
-							//	$cookieStore.remove('currentUser');
+								$rootScope.currentUser = {};
+								$cookieStore.remove('currentUser');
 								UserService.logout()
-								$location.path("/")
+								$location.path("/login")
 											
 
 							};

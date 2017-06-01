@@ -23,6 +23,7 @@ app.controller('BlogController', ['$scope', 'BlogService','$location','$rootScop
 		  blogId:'',
 		  blogName:'',
 		  userId:'',
+          userName:'',
 		  blogStatus:'',
 		  blogDescription:''};
           self.blogs=[];

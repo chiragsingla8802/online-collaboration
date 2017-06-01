@@ -3,14 +3,11 @@ package com.niit.onlinecollaboration.model;
 import java.io.Serializable;
 import java.time.LocalDate;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -76,12 +73,18 @@ public class Blog implements Serializable{
 		this.noOfViews = noOfViews;
 	}
 	
-	public User_Detail getUser_Detail() {
+	public int getUserId() {
+		return userId;
+	}
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+	/*public User_Detail getUser_Detail() {
 		return user_Detail;
 	}
 	public void setUser_Detail(User_Detail user_Detail) {
 		this.user_Detail = user_Detail;
-	}
+	}*/
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
@@ -102,9 +105,10 @@ public class Blog implements Serializable{
 	private int noOfComments;
 	@Column(name="No_Of_Views")
 	private int noOfViews;
-	@OneToOne(cascade = CascadeType.ALL)
+	private int userId;
+	/*@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "userId")
-	private User_Detail user_Detail;
+	private User_Detail user_Detail;*/
 	@Column(name="User_Name")
 	private String userName;
 	

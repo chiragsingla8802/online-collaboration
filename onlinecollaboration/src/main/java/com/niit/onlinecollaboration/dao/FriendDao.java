@@ -7,27 +7,27 @@ import com.niit.onlinecollaboration.model.User_Detail;
 
 public interface FriendDao {
 
-	public List<Friend> getAllFriends();
+	//boolean saveOrUpdate(Friend friend);
+
+	//boolean delete(Friend friend);
+
+	//Friend get(int userId, int friendId);
+
+	//List<Friend> list();
 	
-	public List<Friend> getMyFriendList(int userId);
+	boolean updateFriend(Friend friend);
 	
-	public List<User_Detail> searchAllUsers(int userId);
+	List<User_Detail> myFriends(int id);
 	
-	public List<User_Detail> searchSentRequests(int userId);
+	List<Friend> list(int userId);
 	
-	public boolean update(Friend friend);
+	//List<Friend> getFriends(int userId);
 	
-	public boolean isFriendRequestSent(int userId,int friendId);
 	
-	public boolean isFriend(int userId,int friendId);
+	//List<Friend> getRequest(int userId);
 	
-	public boolean sendFriendRequest(Friend friend);	
+	//List<Friend> getTopFriends(int n);
 	
-	public Friend getByRequest(int userId,int friendId);
-	
-	public boolean rejectRequest(Friend friend);
-	
-	public boolean acceptRequest(Friend friend);
-	
-	public boolean unFriend(int userId,int friendId);
+	boolean addFriend(Friend friends);
+
 }

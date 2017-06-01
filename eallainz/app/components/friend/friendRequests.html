@@ -1,0 +1,17 @@
+<body>
+<br>
+<br>
+<div>
+<div  class="container" ng-controller="FriendController as friendCtrl"  name="listUser">
+<div ng-init=friendCtrl.fetchRequest()>
+<h5>YOU HAVE {{friendCtrl.friendRequestsCount}} NEW FRIEND REQUESTS</h5>
+<br />
+<div ng-repeat="friend in friendCtrl.friendRequests">
+user id:{{friend.userId}}<br>
+name:{{friend.name}}<br>
+<button class="teal darken-1 btn" ng-click="friendCtrl.approveRequest(friend.userId)">APPROVE</button>
+</div>
+</div>
+</div>
+</div>
+</body>        

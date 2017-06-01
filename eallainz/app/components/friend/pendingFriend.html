@@ -1,0 +1,57 @@
+<body>
+<section id="searchFriend" ng-controller="FriendController as ctrl">
+<div ng-controller="UserController">
+<h1>welcome {{currentUser.name}},</h1>
+{{sender}}
+        <div class="container">
+            <div class="custom-bg-inset">
+                <div class="row">
+                   <div class="col-md-12">
+                       <h2 class="text-center">Friend Requests</h2>
+                   </div>
+                    
+                  
+                        <div class="col-md-12" ng-init="ctrl.getRequests()">
+                         <div class="col-md-12">
+                            <h4 class="text-center"><u>Pending Requests</u></h4>
+                        </div>        
+                        <div class="clearfix"></div>                
+                        <!--<div class="friend-box" style="height: 294px;">
+                            <div class="friend" ng-repeat="request in ctrl.friendRequest" ng-show="friend.friendId==currentUser.userId && friend.status=='N'">
+                               
+                                   {{friend.sender.name}}
+                                
+                                <button ng-click="ctrl.acceptFriendRequest(friend.useridd)" class="btn btn-success">
+                                    Accept
+                                </button>
+                                <button ng-click="ctrl.rejectFriendReject(friend.useridd)" class="btn btn-danger">
+                                    Reject
+                                </button>
+                            </div>
+                           </div> -->
+                           <div class="col s5">
+                        <span class="grey-text text-darken-1"><b>{{request.username}}</b></span><br>
+                        <span class="grey-text text-darken-1">Name: {{request.firstName}} {{request.lastName}}</span>,
+                        <span class="grey-text text-darken-1">Role: {{request.role}}</span>
+                    </div>
+                     <div class="col s5">
+                        <a class="waves-effect waves-light col green darken-4 hoverable g-btn frn-btn" ng-click="ctrl.acceptFriendRequest(request.userId)"><i class="material-icons r-icon">done</i></a>
+                        <a class="waves-effect waves-light col red accent-4 hoverable r-btn frn-btn" ng-click="ctrl.rejectFriendRequest(request.userId)"><i class="material-icons r-icon">clear</i></a>
+                    </div>
+                        </div>
+                       
+                    </div>
+                   
+                        
+                    </div>
+                
+                
+                            </div>                
+                </div>
+                
+               
+            
+       
+
+    </section>
+</body>

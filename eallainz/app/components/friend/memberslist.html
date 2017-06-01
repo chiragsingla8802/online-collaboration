@@ -1,0 +1,23 @@
+<body>
+<br>
+<br>
+<div>
+<div  class="container" ng-controller="UserController as ctrl"  name="listUser">
+
+<div ng-init=ctrl.fetchAllUsers()>
+<div ng-repeat="user in ctrl.users" >
+
+user id:{{user.userId}}<br>
+name:{{user.name}}<br>
+phone no:{{user.phoneNo}}<br>
+user role:{{user.role}}
+<div  class="container" ng-controller="FriendController as frndCtrl">
+<button class="teal darken-1 btn" ng-click="frndCtrl.sendRequest(user.userId)">Add Friend</button>
+</div>
+</div>
+
+<!--<button ng-if="FriendController.hasSentRequest" class="teal darken-1 btn disabled" ng-click="FriendController.sendRequest(user.userId)">Add Friend</button>-->
+</div>
+</div>
+</div>
+</body>

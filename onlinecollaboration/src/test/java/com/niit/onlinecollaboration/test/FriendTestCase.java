@@ -23,6 +23,12 @@ public class FriendTestCase {
 	System.out.println("---------------------------------reached after bean----------------------------");
 	}
 	
+	/*@Test
+	public void testGetServices(){
+		user = new User();
+		userDto = userDao.getUserDetail(1);
+		assertEquals("Successfully fetched a single category from the table!","chirag",userDto.getName());
+	}*/
 	
 	
 	

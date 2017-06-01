@@ -2,6 +2,8 @@ package com.niit.onlinecollaboration.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,6 +27,7 @@ public class BlogController {
 	/*mapping to get the list of blogs*/
 	@RequestMapping("/all")
 	public ResponseEntity<List<Blog>> get(){
+		System.out.println("fetch all blogs is called");
 		return new ResponseEntity<List<Blog>>(blogDao.list(),HttpStatus.OK);
 	}
 	
@@ -42,8 +45,9 @@ public class BlogController {
 
 	/*mapping to add blog to blog table*/
 	@PostMapping("/insert")
-	public ResponseEntity<DomainResponse> post(@RequestBody Blog blog){
+	public ResponseEntity<DomainResponse> post(@RequestBody Blog blog, HttpSession session){
 		System.out.println("-------------------------------------reached into controller1--------------------------------------------");
+		//blog.setUserId(CurrentUserID);
 		blogDao.addBlog(blog);
 		System.out.println("-------------------------------blog adeed successfully--------------");
 		return new ResponseEntity<DomainResponse> (new DomainResponse("blog table recieved the data",100), HttpStatus.OK);

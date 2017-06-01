@@ -22,6 +22,11 @@ app.config(function($routeProvider) {
    
   })
 
+  .when('/listUser',{
+		templateUrl:'./app/components/user/listUser.html',
+		controller : 'UserController'
+	})
+
   .when('/myProfile',{
 		templateUrl:'./app/components/user/myProfile.html',
 		controller : 'UserController'
@@ -78,8 +83,39 @@ app.config(function($routeProvider) {
    
   })
 
-  .when('/friend', {
-    templateUrl : './app/components/user/friend.html',
+.when('/friendRequests', {
+    templateUrl : './app/components/friend/friendRequests.html',
+    controller : 'FriendController'
+   
+  })
+
+  // .when('/searchFriend', {
+  //   templateUrl : './app/components/friend/searchFriend.html',
+  //   controller : 'FriendController'
+   
+  // })
+
+  // .when('/pendingFriend', {
+  //   templateUrl : './app/components/user/pendingFriend.html',
+  //   controller : 'FriendController'
+   
+  // })
+
+
+  //  .when('/listfriend', {
+  //   templateUrl : './app/components/user/listfriend.html',
+  //   controller : 'FriendController'
+   
+  // })
+
+  .when('/memberslist', {
+    templateUrl : './app/components/friend/memberslist.html',
+    controller : 'FriendController'
+   
+  })
+
+  .when('/myfriends', {
+    templateUrl : './app/components/friend/myfriends.html',
     controller : 'FriendController'
    
   })

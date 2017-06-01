@@ -1,102 +1,92 @@
 package com.niit.onlinecollaboration.controller;
 
+import java.util.ArrayList;
 import java.util.List;
-
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.niit.onlinecollaboration.dao.FriendDao;
 import com.niit.onlinecollaboration.dao.UserDao;
 import com.niit.onlinecollaboration.model.Friend;
 import com.niit.onlinecollaboration.model.User_Detail;
-
+@RequestMapping("/friend")
+@RestController
 public class FriendController {
 
 	@Autowired
+	Friend friend;
+
+	@Autowired
+	FriendDao friendDao;
+
+	
+	@Autowired
 	UserDao userDao;
-	
-	@Autowired 
-	User_Detail user_Detail;
-	@Autowired
-	private FriendDao friendDao;
+	//tested with postman
+	//Method to send friend request
+			@RequestMapping(value = {"/friendRequest/{id}"}, method = RequestMethod.POST)
+			public ResponseEntity<Friend> sendFriendRequest(@PathVariable("id") int id, @RequestBody int initId) {
+					System.out.println("Sending friend request now!");
+					Friend friend = new Friend();
+					User_Detail user = userDao.getUserDetail(id); //Fetching friend by friend id
+					friend.setFriendId(id);
+					friend.setUserId(initId);
+					friend.setStatus("PENDING");
+					friendDao.addFriend(friend);
+					return new ResponseEntity<Friend>(friend, HttpStatus.OK);
+				}
 
-	@Autowired
-	private Friend friend;
-	@Autowired
-	HttpSession session; 
-	
-
-	@GetMapping("/searchAll")
-	public ResponseEntity<List<User_Detail>> searchUsers() {
-		List<User_Detail> users = friendDao.searchAllUsers((int) session.getAttribute("loggedInUserID"));
-		return new ResponseEntity<List<User_Detail>>(users, HttpStatus.OK);
-
-	}
-	
-	@GetMapping("/searchSentRequests")
-	public ResponseEntity<List<User_Detail>> searchSentRequests() {
-		List<User_Detail> users = friendDao.searchSentRequests((int) session.getAttribute("loggedInUserID"));
-		return new ResponseEntity<List<User_Detail>>(users, HttpStatus.OK);
-
-	}
-	
-	@PutMapping("/sendRequest/{userid}")
-	public ResponseEntity<Friend> sendRequest(@PathVariable("userid")int userid){
-		if(friendDao.isFriendRequestSent((int) session.getAttribute("loggedInUserID"), userid)==false){
-			friend.setUserId((int) session.getAttribute("loggedInUserID"));
-			friend.setFriendId(userid);
-			friend.setStatus("N");
-			friendDao.sendFriendRequest(friend);
-		}
-		else{
-			friend = friendDao.getByRequest((int) session.getAttribute("loggedInUserID"),userid);
-			if(friend.getStatus().equals("R")){
-				friend.setStatus("N");
-				friendDao.update(friend);
-			}
-		}
-		return new ResponseEntity<Friend>(friend,HttpStatus.OK);
-	}
-	
-	@GetMapping("/getFriendlist")
-	public ResponseEntity<List<Friend>> friendList(){
-		List<Friend> friendlist = friendDao.getMyFriendList((int) session.getAttribute("loggedInUserID"));
-		return new ResponseEntity<List<Friend>>(friendlist,HttpStatus.OK);
-	}
-	
-	@PutMapping("/acceptRequest/{userid}/")
-	public ResponseEntity<Friend> acceptRequest(@PathVariable("userid")int userId){
-		friend = friendDao.getByRequest(userId,(int) session.getAttribute("loggedInUserID"));
-		if(friend!=null){
-			friend.setStatus("A");
-			friendDao.acceptRequest(friend);
-		}
-		return new ResponseEntity<Friend>(friend,HttpStatus.OK);
-	}
-	
-	@PutMapping("/rejectRequest/{userid}/")
-	public ResponseEntity<Friend> rejectRequest(@PathVariable("userid")int userId){
-		friend = friendDao.getByRequest(userId,(int) session.getAttribute("loggedInUserID"));
-		if(friend!=null){			
-			friend.setStatus("R");
-			friendDao.rejectRequest(friend);
-		}		
-		return new ResponseEntity<Friend>(friend,HttpStatus.OK);
-	}
-	
-	@PutMapping("/unFriend/{userid}/")
-	public ResponseEntity<Friend> unFriend(@PathVariable("userid")int friendId){
-		friendDao.unFriend((int) session.getAttribute("loggedInUserID"),friendId);
-		return new ResponseEntity<Friend>(friend,HttpStatus.OK);
-	}
-
-	
-	
-	
+			
+			//Method to fetch friend requests
+			@RequestMapping(value = {"/friendRequest/list/{id}"}, method = RequestMethod.GET)
+			public ResponseEntity<List<User_Detail>> fetchRequest(@PathVariable("id") int userId) {
+					System.out.println("Fetchng list of friend request received");
+					List<Friend> friend = friendDao.list(userId);
+					List<User_Detail> users = new ArrayList<>();
+					for(Friend fr : friend) {
+						if(fr.getStatus().equals("PENDING")) {
+							User_Detail user = userDao.getUserDetail(fr.getUserId());
+							users.add(user);
+						}
+					}
+					return new ResponseEntity<List<User_Detail>>(users, HttpStatus.OK);
+				}
+		
+			
+			//Method to approve friend requests
+			@RequestMapping(value = {"/friendRequest/approve/{id}"}, method = RequestMethod.POST)
+			public ResponseEntity<Friend> approveRequest(@PathVariable("id") int id, @RequestBody Integer userId) {
+					System.out.println("Fetchng list of friend request received");
+					List<Friend> friend = friendDao.list(userId);
+					List<User_Detail> users = new ArrayList<>();
+					for(Friend fr : friend) {
+						if(fr.getUserId() == id) {
+							fr.setStatus("APPROVED");
+							friendDao.updateFriend(fr);
+						}
+					}
+					return new ResponseEntity<Friend>(HttpStatus.OK);
+				}
+			
+			//function to fetch user's friends
+			@RequestMapping(value = {"/my/friends/{userId}"}, method = RequestMethod.GET)
+			public ResponseEntity<List<User_Detail>> fetchMyFriends(@PathVariable("userId") int id) {
+					System.out.println("Fetchng friends");
+					List<User_Detail> users = friendDao.myFriends(id);
+					List<User_Detail> myFriends = new ArrayList<>();
+					for(User_Detail user1 : users) {
+						if(user1.getUserId() != id) {
+							myFriends.add(user1);
+						}
+					}
+					System.out.println("Successfully fetch friends");
+					return new ResponseEntity<List<User_Detail>>(myFriends, HttpStatus.OK);
+				}
 }

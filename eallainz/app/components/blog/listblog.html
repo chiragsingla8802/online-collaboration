@@ -1,5 +1,5 @@
 
-<body>
+<!--<body>
 <br>
 <br>
 <div>
@@ -12,6 +12,28 @@ Welcome to Blog
 {{ctrl.blogs}}
 
 <a href = "#"  ng-click="ctrl.getSelectedBlog(blog.id)"> <br>Title  {{blog.blogName}}&nbsp;&nbsp; -  Written By:  {{blog.userId}}&nbsp;&nbsp;</a>
+</div>
+
+</div>
+</div>
+</div>
+</body>-->
+
+<body>
+<br>
+<br>
+<div>
+<div  class="container" ng-controller="BlogController as ctrl"  name="listblog">
+
+
+Welcome to Blog
+<div ng-init=ctrl.fetchAllBlogs()>
+<div ng-repeat="blog in ctrl.blogs" >
+<!--User ID:{{blog.userId}}<br>-->
+Blog ID:{{blog.blogId}}<br>
+Blog :{{blog.blogDescription}}
+
+<a href = "#"  ng-click="ctrl.getSelectedBlog(blog.id)"> <br>Title : {{blog.blogName}}&nbsp;&nbsp; -  Written By: {{blog.userName}} &nbsp;&nbsp;</a><hr>
 </div>
 
 </div>

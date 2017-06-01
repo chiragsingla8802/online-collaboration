@@ -174,8 +174,8 @@ public class UserController {
 		//tested with postman
 		@RequestMapping(value = "/myProfile", method = RequestMethod.GET)
 		public ResponseEntity<User_Detail> myProfile() {
-			int loggedInUserID = (int) session.getAttribute("loggedInUserID");
-			User_Detail user = userDao.getUserDetail(loggedInUserID);
+			int CurrentUserID = (int) session.getAttribute("CurrentUserID");
+			User_Detail user = userDao.getUserDetail(CurrentUserID);
 			return new ResponseEntity<User_Detail>(user, HttpStatus.OK);
 		}
 		
