@@ -1,5 +1,32 @@
+<head>
+  <style>
+  section{
+		padding-left: 15px;
+	}
+
+    body
+{
+    background:url('././assets/1.jpg') fixed;
+    background-size: cover;
+    padding: 0;
+    margin: 0;
+}
+</style>
+</head>
 <body>
+<section>
 <br>
+<div class="w3-container w3-orange" ng-controller="UserController as ctrl">
+  <h1></h1>  
+        <a  href="#!/listUser">Users</a>&nbsp;&nbsp;&nbsp;&nbsp;
+	    <a href="http://www.ndtv.com/">News</a>&nbsp;&nbsp;&nbsp;&nbsp;
+	    <a href="#!/post_job">Post Job</a>&nbsp;&nbsp;&nbsp;&nbsp;
+	    <a href="#!/listblog">Blogs</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="#!/createForum">Create Forum</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="#!/forumlist">Forum list</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="#!/myProfile" >My Profile</a>&nbsp;&nbsp;&nbsp;&nbsp;
+         <a href="#!/login" ng-click="ctrl.logout()">logout</a>&nbsp;&nbsp;&nbsp;&nbsp;
+</div>
 <br>
 <div>
 <div  class="container" ng-controller="UserController as ctrl"  name="listUser">
@@ -24,4 +51,5 @@ user role:{{user.role}}
 </div>
 </div>
 </div>
+</section>
 </body>

@@ -1,0 +1,40 @@
+<div  class="container" ng-controller="ForumController as forCtrl">
+<div class="row" ng-init="forCtrl.fetchForumRequests()">
+   
+        <div style="margin-top: 25px; margin-left: 25px;">
+            <h5>New Forum Join Requests</h5>
+        </div>
+        <br /> <br />
+
+        <div style="margin-left: 25px; margin-bottom: 250px;">
+            <table class="highlight centered responsive-table">
+                <thead>
+                <tr>
+                    <th data-field="id">Forum Name</th>
+                    <th data-field="id">Requested By</th>
+                    <th data-field="status">Status</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                    <tr ng-repeat="forumRequest in forCtrl.forumRequest | orderBy : 'id'">
+                        <td><a href="#!/forum/{{forumRequest.forum.id}}" target="_blank">{{forumRequest.forum.name}}</a></td>
+                        <td>{{forumRequest.username}}</td>
+                        <td> 
+                            <div class="switch">
+                            <label>
+                            Disable
+                            <input type="checkbox" ng-model="forumRequest.status" ng-change="forCtrl.changeFRStatus(forumRequest.id)">
+                            <span class="lever"></span>
+                            Active
+                            </label>
+                            </div>
+                        </td>
+                    </tr>
+                
+                </tbody>
+        </table>
+    </div>
+
+    
+</div>

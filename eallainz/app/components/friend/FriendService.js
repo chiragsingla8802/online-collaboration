@@ -36,6 +36,21 @@ return deferred.promise;
         
 },
 
+fetchUsers:function () {           
+debugger;
+var deferred = $q.defer();   
+var userId = $rootScope.currentUser.userId
+$http.get(BASE_URL + '/user/friends/model/' + userId)
+.then (
+function(response) {                 
+deferred.resolve(response.data);
+},
+function(errResponse) {                      
+deferred.reject(errResponse);
+}
+);               
+return deferred.promise;      
+},
 
 fetchRequest:function () {
 var deferred = $q.defer();
@@ -58,6 +73,22 @@ debugger;
 var deferred = $q.defer();         
 var userId = $rootScope.currentUser.userId        
 $http.post(BASE_URL + '/friendRequest/approve/' + id, userId)            
+.then (                
+function(response) {                    
+deferred.resolve(response.data);                 
+},                 
+function(errResponse) {                     
+deferred.reject(errResponse);                 
+}              
+);              
+return deferred.promise;     
+},
+
+rejectRequest:function (id) {           
+debugger;          
+var deferred = $q.defer();         
+var userId = $rootScope.currentUser.userId        
+$http.post(BASE_URL + '/friendRequest/reject/' + id, userId)            
 .then (                
 function(response) {                    
 deferred.resolve(response.data);                 

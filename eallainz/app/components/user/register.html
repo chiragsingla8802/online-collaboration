@@ -1,17 +1,316 @@
+<style>
+ body,html{
+		height: 100%;
+	}
+	/* remove outer padding */
+	.main .row{
+		padding: 0px;
+		margin: 0px;
+		
+	}
+	/*Remove rounded coners*/
+	nav.top.navbar {
+		border-radius: 0px;
+		
+		
+	}
+	.navbar{
+	    background-color: #002d60;
+	}
+	nav.top, .main{
+		-webkit-transition: margin 200ms ease-out;
+	    -moz-transition: margin 200ms ease-out;
+	    -o-transition: margin 200ms ease-out;
+	    transition: margin 200ms ease-out;
+	   
+	}
+	/* Add gap to nav and right windows.*/
+	.main{
+		padding: 10px 10px 0 10px;
+		
+	}
+	/* .....NavBar: Icon only with coloring/layout.....*/
+	/*small/medium side display*/
+	@media (min-width: 768px) {
+		/*Allow main to be next to Nav*/
+		.main{
+			position: absolute;
+			width: calc(100% - 40px); /*keeps 100% minus nav size*/
+			margin-left: 40px;
+			float: right;
+		}
+		/*lets nav bar to be showed on mouseover*/
+		nav.top:hover + .main{
+			margin-left: 200px;
+			
+		}
+		/*Center Brand*/
+		nav.top.navbar.top>.container .navbar-brand, .navbar>.container-fluid .navbar-brand {
+			margin-left: 0px;
+			color:#FF1493;
+			font-family:Castellar;
+			
+		}
+		/*Center Brand*/
+		nav.top .navbar-brand, nav.top .navbar-header{
+			text-align: center;
+			width: 80%;
+			margin-left: 0px;
+		}
+		/*Center Icons*/
+		nav.top a{
+			padding-right: 13px;
+		}
+		/*adds border top to first nav box */
+		nav.top .navbar-nav > li:first-child{
+			border-top: 1px #e5e5e5 solid;
+		}
+		/*adds border to bottom nav boxes*/
+		nav.top .navbar-nav > li{
+			border-bottom: 1px #e5e5e5 solid;
+		}
+		/* Colors/style dropdown box*/
+		nav.top .navbar-nav .open .dropdown-menu {
+			position: static;
+			float: none;
+			width: auto;
+			margin-top: 0;
+			background-color:#ff1a8c;
+			border: 0;
+			-webkit-box-shadow: none;
+			box-shadow:none;
+		}
+		/*allows nav box to use 100% width*/
+		nav.top .navbar-collapse, nav.top .container-fluid{
+			padding: 0 0px 0 0px;
+		}
+		/*colors dropdown box text */
+		.navbar-inverse .navbar-nav .open .dropdown-menu>li>a {
+			color: #5900b3;
+		}
+		/*gives sidebar width/height*/
+		nav.top{
+			width: 200px;
+			height: 100%;
+			margin-left: -160px;
+			float: left;
+			z-index: 8000;
+			margin-bottom: 0px;
+			 
+		}
+		/*give sidebar 100% width;*/
+		nav.top li {
+			width: 100%;
+			
+		}
+		/* Move nav to full on mouse over*/
+		nav.top:hover{
+			margin-left: 0px;
+			
+		}
+		/*for hiden things when navbar hidden*/
+		.forAnimate{
+			opacity: 0;
+		}
+	}
+	/* .....NavBar: Fully showing nav bar..... */
+	@media (min-width: 1330px) {
+		/*Allow main to be next to Nav*/
+		.main{
+			width: calc(100% - 200px); /*keeps 100% minus nav size*/
+			margin-left: 200px;
+		}
+		/*Show all nav*/
+		nav.top{
+			margin-left: 0px;
+			float: left;
+		}
+		/*Show hidden items on nav*/
+		nav.top .forAnimate{
+			opacity: 1;
+		}
+	}
+	nav.top .navbar-nav .open .dropdown-menu>li>a:hover, nav.top .navbar-nav .open .dropdown-menu>li>a:focus {
+		color:  #CCC;
+		background-color:transparent;
+	}
+	nav:hover .forAnimate{
+		opacity: 1;
+	}
+	section{
+		padding-left: 15px;
+	}
+body
+{
+    background: url('http://farm3.staticflickr.com/2832/12303719364_c25cecdc28_b.jpg') fixed;
+    background-size: cover;
+    padding: 0;
+    margin: 0;
+}
 
-<body>
-	<div class="generic-container" ng-controller="UserController as ctrl">
+.wrap
+{
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 99;
+}
+
+p.form-title
+{
+    font-family: 'Open Sans' , sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    text-align: center;
+    color: #FFFFFF;
+    margin-top: 5%;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+}
+
+form
+{
+    width: 250px;
+    margin: 0 auto;
+}
+
+form.login input[type="text"], form.login input[type="password"]
+{
+    width: 100%;
+    margin: 0;
+    padding: 5px 10px;
+    background: 0;
+    border: 0;
+    border-bottom: 1px solid #FFFFFF;
+    outline: 0;
+    font-style: italic;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+    color: #FFFFFF;
+    outline: 0;
+}
+
+form.login input[type="submit"]
+{
+    width: 100%;
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-top: 16px;
+    outline: 0;
+    cursor: pointer;
+    letter-spacing: 1px;
+}
+
+form.login input[type="submit"]:hover
+{
+    transition: background-color 0.5s ease;
+}
+
+form.login .remember-forgot
+{
+    float: left;
+    width: 100%;
+    margin: 10px 0 0 0;
+}
+form.login .forgot-pass-content
+{
+    min-height: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+form.login label, form.login a
+{
+    font-size: 12px;
+    font-weight: 400;
+    color: #FFFFFF;
+}
+
+form.login a
+{
+    transition: color 0.5s ease;
+}
+
+form.login a:hover
+{
+    color: #2ecc71;
+}
+
+.pr-wrap
+{
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    display: none;
+}
+
+	</style>
+<div class="container" ng-controller="UserController as ctrl">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="wrap">
+                <p class="form-title">User Registration Form</p>
+			    <form class="login" ng-submit="ctrl.submit()">
+					<label>Register As..</label>
+				<label>Guest</label>	<input type="radio" name="role" value="Guest" ng-model="ctrl.user.role">
+				<label>Employee</label>	<input type="radio" name="role" value="Employee" ng-model="ctrl.user.role">
+				<hr>
+                <label class="col-md-2 control-lable" for="uname">Name</label>
+				<input type="text" ng-model="ctrl.user.name" id="name"placeholder="Enter your name" required ng-minlength="3"/>
+				<hr>
+				<label class="col-md-2 control-lable" for="password">Password</label>
+                <input type="password" ng-model="ctrl.user.password" id="password"  placeholder="Enter your password" required ng-minlength="3" />
+				<hr>
+				<label class="col-md-2 control-lable" for="email">Email</label>
+				<input type="email" ng-model="ctrl.user.email" id="email"  placeholder="Enter your Email" required />
+				<hr>
+				<label class="col-md-2 control-lable" for="mobilel">phone no.</label>
+				<input type="tel" ng-model="ctrl.user.phoneNo" id="phoneNo"  placeholder="Enter your contact number" required ng-minlength="10" />
+				<hr>
+				<label class="col-md-2 control-lable" for="address">Address</label>
+				<input type="text" ng-model="ctrl.user.address" id="address" placeholder="Enter your Address."required />
+				<hr>
+				<label class="col-md-2 control-lable" for="city">City</label>
+				<input type="text" ng-model="ctrl.user.city" id="city" placeholder="Enter your city." required/>
+				<hr>
+				<label class="col-md-2 control-lable" for="state">State</label>
+				<input type="text"ng-model="ctrl.user.state" id="state" class="form-control input-sm" placeholder="Enter your state." required/>
+				<hr>
+				
+				<input type="submit" value="Register Now!" class="btn btn-success btn-sm" /></br>
+                <button type="button" ng-click="ctrl.reset()" class="btn btn-warning btn-sm">Reset Form</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<!--<body>-->
+	<!--<div class="generic-container" ng-controller="UserController as ctrl">-->
 	
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<span class="lead">User Registration Form </span>
-				</div>
-				<div class="formcontainer">
-					<form ng-submit="ctrl.submit()" name="myForm"
-						class="form-horizontal">
+			<!--<div class="panel panel-default">-->
+				<!--<div class="panel-heading">-->
+					<!--<span class="lead">User Registration Form </span>-->
+				<!--</div>-->
+				<!--<div class="formcontainer">-->
+					<!--<form ng-submit="ctrl.submit()" name="myForm"-->
+						<!--class="form-horizontal">-->
 
-						<label>Register As..</label>
-						<div class="container">
+					<!--<label>Register As..</label>-->
+						<!--<div class="container">
 							<div class="radio">
 								<label class="radio-inline"> <input type="radio"
 									name="role" value="guest" ng-model="ctrl.user.role">
@@ -20,17 +319,17 @@
 									name="role" value="alumni" ng-model="ctrl.user.role">
 									Alumni
 								</label> -->
-								<label class="radio-inline"> <input type="radio"
+							<!--	<label class="radio-inline"> <input type="radio"
 									name="role" value="employee" ng-model="ctrl.user.role">
 									Employee
 								</label>
-							</div>
+							</div>-->
 
 
-						</div>
+						<!--</div>-->
 
 
-						<div class="row">
+						<!--<div class="row">
 							<div class="form-group col-md-12">
 								<label class="col-md-2 control-lable" for="userId">ID</label>
 								<div class="col-md-7">
@@ -39,10 +338,10 @@
 										placeholder="Enter your ID" required ng-minlength="3" />
 								</div>
 							</div>
-						</div>
+						</div>-->
 
 
-						<div class="row">
+						<!--<div class="row">
 							<div class="form-group col-md-12">
 								<label class="col-md-2 control-lable" for="uname">Name</label>
 								<div class="col-md-7">
@@ -51,9 +350,9 @@
 										placeholder="Enter your name" required ng-minlength="3" />
 								</div>
 							</div>
-						</div>
+						</div>-->
 
-						<div class="row">
+						<!--<div class="row">
 							<div class="form-group col-md-12">
 								<label class="col-md-2 control-lable" for="password">Password</label>
 								<div class="col-md-7">
@@ -62,10 +361,10 @@
 										placeholder="Enter your password" required ng-minlength="3" />
 								</div>
 							</div>
-						</div>
+						</div>-->
 
 
-						<div class="row">
+						<!--<div class="row">
 							<div class="form-group col-md-12">
 								<label class="col-md-2 control-lable" for="email">Email</label>
 								<div class="col-md-7">
@@ -75,11 +374,11 @@
 
 								</div>
 							</div>
-						</div>
+						</div>-->
 
 						
 
-						<div class="row">
+						<!--<div class="row">
 							<div class="form-group col-md-12">
 								<label class="col-md-2 control-lable" for="mobilel">phone no.</label>
 								<div class="col-md-7">
@@ -89,10 +388,10 @@
 
 								</div>
 							</div>
-						</div>
+						</div>-->
 
 
-						<div class="row">
+						<!--<div class="row">
 							<div class="form-group col-md-12">
 								<label class="col-md-2 control-lable" for="address">Address</label>
 								<div class="col-md-7">
@@ -102,9 +401,9 @@
 										placeholder="Enter your Address." />
 								</div>
 							</div>
-						</div>
+						</div>-->
 
-						<div class="row">
+						<!--<div class="row">
 							<div class="form-group col-md-12">
 								<label class="col-md-2 control-lable" for="city">City</label>
 								<div class="col-md-7">
@@ -114,9 +413,9 @@
 										placeholder="Enter your city." />
 								</div>
 							</div>
-						</div>
+						</div>-->
 
-						<div class="row">
+						<!--<div class="row">
 							<div class="form-group col-md-12">
 								<label class="col-md-2 control-lable" for="state">State</label>
 								<div class="col-md-7">
@@ -126,10 +425,10 @@
 										placeholder="Enter your state." />
 								</div>
 							</div>
-						</div>
+						</div>-->
 
 
-
+<!--
 						<div class="row">
 							<div class="form-actions floatRight">
 								<input type="submit" value="Register"
@@ -146,4 +445,4 @@
 	</div>
 
 
-</body>
+</body>-->

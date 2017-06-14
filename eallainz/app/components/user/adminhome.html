@@ -1,8 +1,24 @@
 <!DOCTYPE html>
 <html>
+  <head>
+  <style>
+  section{
+		padding-left: 15px;
+	}
+
+    body
+{
+    background:url('././assets/1.jpg') fixed;
+    background-size: cover;
+    padding: 0;
+    margin: 0;
+}
+</style>
+</head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
  <link rel="stylesheet" href="https://www.w3schools.com/lib/w3.css">
 <body>
+  <section>
 <br>
 <br>
 <br>
@@ -15,10 +31,13 @@
 	<!--<a href="#!/sortjob">Sort Jobs</a>&nbsp;&nbsp;&nbsp;&nbsp;-->
 	<a href="#!/post_job">Post Job</a>&nbsp;&nbsp;&nbsp;&nbsp;
 	<a href="#!/listblog">Blogs</a>&nbsp;&nbsp;&nbsp;&nbsp;
+  <a href="#!/createForum">Create Forum</a>&nbsp;&nbsp;&nbsp;&nbsp;
+  <a href="#!/forumlist">Forum list</a>&nbsp;&nbsp;&nbsp;&nbsp;
 	<!--<a href="#!/sortblog">Sort Blogs</a>&nbsp;&nbsp;&nbsp;&nbsp;-->
 	<!--<a href="#!/rest">Events</a>&nbsp;&nbsp;&nbsp;&nbsp;  -->
         <!--<a href="#" ng-click="ctrl.myProfile()">My Profile</a>-->
          <a href="#!/myProfile" >My Profile</a>&nbsp;&nbsp;&nbsp;&nbsp;
+          <a href="#!/login" ng-click="ctrl.logout()">logout</a>&nbsp;&nbsp;&nbsp;&nbsp;
 </div>
 
 <div class="w3-row-padding">
@@ -51,5 +70,6 @@
 
 </div>
 </div>
+  </section>
 </body>
 </html>

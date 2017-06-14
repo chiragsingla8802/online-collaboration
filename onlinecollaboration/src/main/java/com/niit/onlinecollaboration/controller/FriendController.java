@@ -75,18 +75,40 @@ public class FriendController {
 					return new ResponseEntity<Friend>(HttpStatus.OK);
 				}
 			
+			//Method to reject friend requests
+			@RequestMapping(value = {"/friendRequest/reject/{id}"}, method = RequestMethod.POST)
+			public ResponseEntity<Friend> rejectRequest(@PathVariable("id") int id, @RequestBody Integer userId) {
+					System.out.println("Fetchng list of friend request received");
+					List<Friend> friend = friendDao.list(userId);
+					List<User_Detail> users = new ArrayList<>();
+					for(Friend fr : friend) {
+						if(fr.getUserId() == id) {
+							fr.setStatus("rejected");
+							friendDao.updateFriend(fr);
+						}
+					}
+					return new ResponseEntity<Friend>(HttpStatus.OK);
+				}
+			
+			@RequestMapping(value = {"/user/friends/model/{id}"}, method = RequestMethod.GET)
+			public ResponseEntity<List<User_Detail>> users(@PathVariable("id") int userId) {
+					System.out.println("Fetchng friends from user");
+					List<User_Detail> users = friendDao.noFriends(userId);  
+					return new ResponseEntity<List<User_Detail>>(users, HttpStatus.OK);
+				}
+			
 			//function to fetch user's friends
 			@RequestMapping(value = {"/my/friends/{userId}"}, method = RequestMethod.GET)
 			public ResponseEntity<List<User_Detail>> fetchMyFriends(@PathVariable("userId") int id) {
 					System.out.println("Fetchng friends");
 					List<User_Detail> users = friendDao.myFriends(id);
-					List<User_Detail> myFriends = new ArrayList<>();
-					for(User_Detail user1 : users) {
-						if(user1.getUserId() != id) {
-							myFriends.add(user1);
-						}
-					}
+					//List<User_Detail> myFriends = new ArrayList<>();
+//					for(User_Detail user1 : users) {
+//						if(user1.getUserId() != id) {
+//							myFriends.add(user1);
+//						}
+//					}
 					System.out.println("Successfully fetch friends");
-					return new ResponseEntity<List<User_Detail>>(myFriends, HttpStatus.OK);
+					return new ResponseEntity<List<User_Detail>>(users, HttpStatus.OK);
 				}
 }

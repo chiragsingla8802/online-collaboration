@@ -96,6 +96,7 @@ public class Blog implements Serializable{
 	}
 	private String blogName;
 	private String blogStatus;
+	@Column(length=100000)
 	private String blogDescription;
 	@Column(name="Post_Date")
 	private LocalDate postDate;

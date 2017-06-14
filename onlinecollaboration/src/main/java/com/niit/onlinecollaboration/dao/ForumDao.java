@@ -7,6 +7,7 @@ import com.niit.onlinecollaboration.model.Forum;
 public interface ForumDao {
 
 	List<Forum> list();
+	List<Forum> mainList();
 	Forum getForum(int id);
 	boolean addForum(Forum forum);
 	boolean updateForum(Forum forum);

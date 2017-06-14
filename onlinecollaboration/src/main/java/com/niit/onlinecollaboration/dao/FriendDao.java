@@ -29,5 +29,6 @@ public interface FriendDao {
 	//List<Friend> getTopFriends(int n);
 	
 	boolean addFriend(Friend friends);
-
+ 
+	List<User_Detail> noFriends(int id);
 }

@@ -10,6 +10,7 @@ app
 						'$rootScope',
 						'$cookieStore',
 						'$http',
+						
 						function($scope, UserService, $location, $rootScope,$cookieStore,
 								 $http) {
 							console.log("UserController...")
@@ -69,8 +70,8 @@ app
 										.createUser(user)
 										.then(
 												function(d) {
-													alert("Thank you for registration.your user id is:"+user.userId)
-													$location.path("/")
+													alert("Thank you for registration.check your email for userID.")
+													$location.path("/login")
 												},
 												function(errResponse) {
 													console
@@ -175,8 +176,7 @@ app
 														$cookieStore.put('currentUser',self.user);
 													//	$http.defaults.headers.common['Authorization'] = 'Basic '+ $rootScope.currentUser;
 													if ($rootScope.currentUser.role === "admin") {
-															$location
-																	.path('/adminhome');
+															$location.path('/adminhome');
 														}
 
 														else {
@@ -190,18 +190,14 @@ app
 
 							self.logout = function() {
 								console.log("logout")
-								alert("you have been successfully logged out")
-								$rootScope.currentUser = {};
-								$cookieStore.remove('currentUser');
+								alert("you have been successfully logged out")			
 								UserService.logout()
-								$location.path("/login")
+								$location.path('#!/login')
 											
 
 							};
 
-							// self.fetchAllUsers(); //calling the method
-
-							// better to call fetchAllUsers -> after login ???
+						
 
 							self.login = function() {
 								{
@@ -220,7 +216,7 @@ app
 							};
 
 							self.reset = function() {
-								self.user = {
+								    self.user = {
 									userId : '',
 									name : '',
 									password : '',
@@ -231,7 +227,7 @@ app
 									errorCode : '',
 									errorMessage : ''
 								};
-								$scope.myForm.$setPristine(); // reset Form
+								
 							};
 
 						} ]);

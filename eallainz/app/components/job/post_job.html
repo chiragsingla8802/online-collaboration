@@ -1,3 +1,30 @@
+<head>
+  <style>
+  section{
+		padding-left: 15px;
+	}
+
+    body
+{
+    background:url('././assets/1.jpg') fixed;
+    background-size: cover;
+    padding: 0;
+    margin: 0;
+}
+</style>
+</head>
+<section>
+    <div class="w3-container w3-orange" ng-controller="UserController as ctrl">
+  <h1></h1>  
+        <a  href="#!/listUser">Users</a>&nbsp;&nbsp;&nbsp;&nbsp;
+	    <a href="http://www.ndtv.com/">News</a>&nbsp;&nbsp;&nbsp;&nbsp;
+	    <a href="#!/post_job">Post Job</a>&nbsp;&nbsp;&nbsp;&nbsp;
+	    <a href="#!/listblog">Blogs</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="#!/createForum">Create Forum</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="#!/forumlist">Forum list</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="#!/myProfile" >My Profile</a>&nbsp;&nbsp;&nbsp;&nbsp;
+         <a href="#!/login" ng-click="ctrl.logout()">logout</a>&nbsp;&nbsp;&nbsp;&nbsp;
+</div>
 <div ng-hide="currentUser==''">
 
     <div name="post_job" ng-controller="JobController as ctrl">
@@ -41,3 +68,4 @@
         </div>
   </div>
 </div>
+</section>

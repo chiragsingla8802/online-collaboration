@@ -34,7 +34,7 @@ self.friendRequestsCount =[];
 
 
 self.sendRequest = function(id) {
-debugger;
+console.log("sending friend request")
 FriendService.sendRequest(id)     
 .then (
 function(friend) {           
@@ -66,6 +66,16 @@ console.log('friend request accepted!')
 );
 },
 
+self.rejectRequest = function(id) {
+FriendService.rejectRequest(id)
+.then (
+function(friendRequests) {
+console.log('friend request rejected!')
+},function(errResponse) {
+}
+);
+},
+
 self.myfriend = function() {
 FriendService.checkUsersFriends()
 .then (
@@ -78,12 +88,17 @@ self.myFriendsCount = self.myFriends.length;
 );
 },
 
-self.searchAllUsers = function() {
-UserService.fetchAllUsers().then(function(d) {
-self.userslist = d;
-}, function(errResponse) {
-console.error('Error while fetching Users');
-});
-};
+self.fetchusers = function() {       
+ FriendService.fetchUsers()   
+.then (            
+ function(user) {           
+ 
+self.userslist = user;
+console.log('all users but not my friends!!!')                    
+self.countUsers = self.userslist.length;              
+}, function (errResponse) {              
+ }           
+);
+    }
 } 
 ]);

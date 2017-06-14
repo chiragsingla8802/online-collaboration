@@ -1,19 +1,56 @@
+<head>
+    <style>
+        section{
+		padding-left: 15px;
+	}
+    body
+{
+    background:url('././assets/1.jpg') fixed;
+    background-size: cover;
+    padding: 0;
+    margin: 0;
+}
+
+.wrap
+{
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 99;
+}
+</style>
+</head>
 <body>
-<br>
+    <section>
+<br> 
+        <a href="#!/myProfile" >My Profile</a>&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href="#!/memberslist" >All Users</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="#!/friendRequests" >Pending Friends Request</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="#!/myfriends" >My Friends</a>&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href="#!/createblog">Create Blog</a>&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href="#!/listblog">List Blog</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="#!/forumlist">Forum list</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="#!/login" ng-click="ctrl.logout()">logout</a>&nbsp;&nbsp;&nbsp;&nbsp;
+
 <br>
 <div>
 <div  class="container" ng-controller="FriendController as friendCtrl"  name="listUser">
 <div ng-init=friendCtrl.myfriend()>
-<h5>YOU HAVE {{friendCtrl.myFriendsCount}} FRIENDS</h5>
+<h2>YOU HAVE {{friendCtrl.myFriendsCount}} FRIENDS</h2>
 <br />
 <div ng-repeat="friend in friendCtrl.myFriends">
+  
 user id:{{friend.userId}}<br>
 name:{{friend.name}}<br>
-<button class="teal darken-1 btn" ng-click="friendCtrl.approveRequest(friend.userId)">Chat Now!</button>
+ <a href="#!/chat/{{friend.userId}}/{{friend.name}}">Chat Now!</a>&nbsp;&nbsp;&nbsp;&nbsp;
 <hr>
-<!--<button class="teal darken-1 btn" ng-click="friendCtrl.approveRequest(friend.userId)">APPROVE</button>-->
+
 </div>
 </div>
 </div>
 </div>
+    </section>
 </body>        

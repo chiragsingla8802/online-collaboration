@@ -86,7 +86,9 @@ app.service('UserService', ['$http', '$q','$rootScope', function($http, $q,$root
               
             logout: function(){
             	console.log('logout....')
-                return $http.get(BASE_URL+'/logout')
+                var deferred = $q.defer();   
+                var userId = $rootScope.currentUser.userId
+                return $http.get(BASE_URL+'/logout/'+ userId)
                         .then(
                                 function(response){
                                     return response.data;

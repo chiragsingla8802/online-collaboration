@@ -1,17 +1,83 @@
+<head>
+    <style>
+    body
+{
+    background:url('././assets/1.jpg') fixed;
+    background-size: cover;
+    padding: 0;
+    margin: 0;
+}
 
+.wrap
+{
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 99;
+}
+</style>
+</head>
 <body>
-<div name="updateuser">
-	<div class="generic-container" ng-controller="UserController as ctrl">
 
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<span class="lead">My Profile </span>
-				</div>
-				<div class="formcontainer">
-					<form ng-submit="ctrl.update()" name="myForm"
-						class="form-horizontal">
+<div class="container" ng-controller="UserController as ctrl">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="wrap">
+                <p class="form-title">Update Profile</p>
+				
+			    <form class="update" ng-submit="ctrl.update()">
+				<h5>your User ID is:{{currentUser.userId}}</h5>
+				<hr>
+                <label class="col-md-2 control-lable" for="name">Name</label>  
+				<input type="text"  ng-model= "currentUser.name"   id="name" class="name form-control input-sm"/>
+				<hr>
+				<label class="col-md-2 control-lable" for="password">Password</label>
+                <input type="password" ng-model= "currentUser.password" id="password" class="password form-control input-sm" placeholder="Enter your password" required ng-minlength="3" />
+				<label class="col-md-2 control-lable" for="email">Email</label>
+				<input type="email" ng-model="currentUser.email" id="email" class="email form-control input-sm" placeholder="Enter your Email" required />
+				
+				
+				<label class="col-md-2 control-lable" for="mobilel">phone no.</label>
+				<input type="tel" ng-model="currentUser.phoneNo" id="phoneNo" class="mobile form-control input-sm" placeholder="Enter your contact number" required ng-minlength="10" />
+				
+				
+				<label class="col-md-2 control-lable" for="address">Address</label>
+				<input type="text" width="100" height="50" ng-model="currentUser.address" id="address" class="form-control input-sm" placeholder="Enter your Address." />
+				
+				
+				<label class="col-md-2 control-lable" for="city">City</label>
+				<input type="text" width="100" height="50" ng-model="currentUser.city" id="city" class="form-control input-sm" placeholder="Enter your city." />
+				
+				
+				<label class="col-md-2 control-lable" for="state">State</label>
+				<input type="text" width="100" height="50" ng-model="currentUser.state" id="state" class="form-control input-sm" placeholder="Enter your state." />
+				<hr>
+				
+				<input type="submit" value="Update!" class="btn btn-success btn-sm" /></br>
+               
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
-							<div class="row">
+
+
+<!--<div name="updateuser">-->
+	<!--<div class="generic-container" ng-controller="UserController as ctrl">-->
+
+			<!--<div class="panel panel-default">-->
+				<!--<div class="panel-heading">-->
+					<!--<span class="lead">My Profile </span>-->
+				<!--</div>-->
+				<!--<div class="formcontainer">-->
+					<!--<form ng-submit="ctrl.update()" name="myForm"
+						class="form-horizontal">-->
+
+							<!--<div class="row">
 							<div class="form-group col-md-12">
 								<label class="col-md-2 control-lable" for="userId">ID</label>  
 								<div class="col-md-7">
@@ -20,10 +86,10 @@
 										placeholder="Enter your ID"  />
 								</div>
 							</div>
-						</div>
+						</div>-->
 						
 						
-						<div class="row">
+						<!--<div class="row">
 							<div class="form-group col-md-12">
 								<label class="col-md-2 control-lable" for="name">Name</label>  
 								<div class="col-md-7">
@@ -32,11 +98,11 @@
 										placeholder="Enter your Name" required ng-minlength="3" />
 								</div>
 							</div>
-						</div>
+						</div>-->
 						
 						
 
-						<div class="row">
+						<!--<div class="row">
 							<div class="form-group col-md-12">
 								<label class="col-md-2 control-lable" for="password">Password</label>
 								<div class="col-md-7">
@@ -123,7 +189,7 @@
 						</div>-->
 
 
-						<div class="row">
+					<!--	<div class="row">
 							<div class="form-actions floatRight">
 								<input type="submit" value="Update"
 									class="btn btn-primary btn-sm">
@@ -140,4 +206,4 @@
 
 </body>
 
-</html>
+</html>-->

@@ -1,0 +1,88 @@
+<head>
+    <style>
+        section{
+		padding-left: 15px;
+	}
+    body
+{
+    background:url('././assets/1.jpg') fixed;
+    background-size: cover;
+    padding: 0;
+    margin: 0;
+}
+
+.wrap
+{
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 99;
+}
+</style>
+</head>
+<body>
+    <section>
+        <div ng-if="currentUser.role=='guest'">
+        <a href="#!/myProfile" >My Profile</a>&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href="#!/memberslist" >All Users</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="#!/friendRequests" >Pending Friends Request</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="#!/myfriends" >My Friends</a>&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href="#!/createblog">Create Blog</a>&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href="#!/listblog">List Blog</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="#!/forumlist">Forum list</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="#!/login" ng-click="ctrl.logout()">logout</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        </div>
+         <div ng-if="currentUser.role=='employee'">
+        <a href="#!/myProfile" >My Profile</a>&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href="#!/memberslist" >All Users</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="#!/friendRequests" >Pending Friends Request</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="#!/myfriends" >My Friends</a>&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href="#!/createblog">Create Blog</a>&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href="#!/listblog">List Blog</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="#!/forumlist">Forum list</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="#!/login" ng-click="ctrl.logout()">logout</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        </div>
+        <div class="w3-container w3-orange" ng-controller="UserController as ctrl"  ng-if="currentUser.role=='admin'">
+  <h1></h1>  
+        <a  href="#!/listUser">Users</a>&nbsp;&nbsp;&nbsp;&nbsp;
+	    <a href="http://www.ndtv.com/">News</a>&nbsp;&nbsp;&nbsp;&nbsp;
+	    <a href="#!/post_job">Post Job</a>&nbsp;&nbsp;&nbsp;&nbsp;
+	    <a href="#!/listblog">Blogs</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="#!/createForum">Create Forum</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="#!/forumlist">Forum list</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="#!/myProfile" >My Profile</a>&nbsp;&nbsp;&nbsp;&nbsp;
+         <a href="#!/login" ng-click="ctrl.logout()">logout</a>&nbsp;&nbsp;&nbsp;&nbsp;
+</div>
+<div  class="container" ng-controller="ForumController as forCtrl">
+<div class="row" ng-init="forCtrl.fetchForums()">
+    <div class="col m9">
+        <div style="margin-bottom: 50px;">
+          
+            <h4>Forums List</h4>
+
+            <div class="row">
+                <div class="col s12 m7">
+                    <div  ng-repeat="forums in forCtrl.forums">
+                        <a href="#!/forum/{{forums.id}}">{{forums.name}}</a>
+                        <div class="card-content">
+                        <p>{{forums.description}}</p>
+                        </div>
+                        </hr>
+                        </hr>
+                        <!--<div class="card-action">
+                        <a >add</a>
+                        </div>-->
+                    </div>
+                </div>
+            </div> 
+
+        </div>
+    </div>
+   
+    </div>
+</div>
+                    </section>
+</body>

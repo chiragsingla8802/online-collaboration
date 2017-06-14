@@ -1,35 +1,49 @@
+<head>
+    <style>
+		section{
+		padding-left: 15px;
+	}
+    body
+{
+    background:url('././assets/1.jpg') fixed;
+    background-size: cover;
+    padding: 0;
+    margin: 0;
+}
 
+.wrap
+{
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 99;
+}
+</style>
+</head>
 <body>
+	<section>
+	  	<a href="#!/myProfile" >My Profile</a>&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href="#!/memberslist" >All Users</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="#!/friendRequests" >Pending Friends Request</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="#!/myfriends" >My Friends</a>&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href="#!/createblog">Create Blog</a>&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href="#!/listblog">List Blog</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="#!/forumlist">Forum list</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="#!/login" ng-click="ctrl.logout()">logout</a>&nbsp;&nbsp;&nbsp;&nbsp;
 <div name="createblog">
-<div ng-show="currentUser==''">
-<div class="alert alert-danger fade in">
-<div>
-you are not logged in..Please login<a href="#/login">here</a>to create a blog </div>
-<div>
-if you are not register..Please register<a href="#/register">here</a>to create a blog
-</div>
-</div>
-</div>
-<div ng-hide="currentUser==''">
+
 <div class="generic-container" ng-controller="BlogController as ctrl">
 <form ng-submit="ctrl.submit()" name="myForm" class="form-horizontal">
 <label>Please Fill the Blog Details</label>
 <div class="row">
-							<!--<div class="row">
-							<div class="form-group col-md-12">
-								<label class="col-md-2 control-lable" for="userId">ID</label>  
-								<div class="col-md-7">
-									<input type="text"  ng-model= "UserController.currentUser.userId"  id="userId"
-										class="userId form-control input-sm"
-										placeholder="Enter your ID"  />
-								</div>
-							</div>
-						</div>-->
 
 						<div class="form-group col-md-12">
 								<label class="col-md-2 control-lable" >User ID</label>  
 								<div class="col-md-7">
-									<input type="text"    ng-model="ctrl.blog.userId" id="userId"
+									<input type="text"    ng-model="currentUser.userId" id="userId"
 											class="userId form-control input-sm"
 										placeholder="Enter your User ID"  />
 								</div>
@@ -38,7 +52,7 @@ if you are not register..Please register<a href="#/register">here</a>to create a
 							<div class="form-group col-md-12">
 								<label class="col-md-2 control-lable" >User Name</label>  
 								<div class="col-md-7">
-									<input type="text"    ng-model="ctrl.blog.userName" id="userName"
+									<input type="text"    ng-model="currentUser.name" id="userName"
 											class="name form-control input-sm"
 										placeholder="Enter your name"  />
 								</div>
@@ -58,7 +72,7 @@ if you are not register..Please register<a href="#/register">here</a>to create a
 								<div class="col-md-7">
 									<textarea rows="10" cols="50" ng-model="ctrl.blog.blogDescription" id="blogDescription"
 											class="blogDescription form-control input-sm"
-										placeholder="Blog Description(maximum 255 characters)" required ng-minlength="50" >
+										placeholder="Blog Description">
 										</textarea>
 								</div>
 							</div>
@@ -76,5 +90,5 @@ if you are not register..Please register<a href="#/register">here</a>to create a
 
 </div>
 </div>
-
+</section>
 </body>

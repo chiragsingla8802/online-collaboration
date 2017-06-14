@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.niit.onlinecollaboration.dao.UserDao;
 import com.niit.onlinecollaboration.model.DomainResponse;
 import com.niit.onlinecollaboration.model.User_Detail;
+import com.niit.onlinecollaboration.service.EmailService;
 
 @RestController
 @RequestMapping("/user")
@@ -29,6 +30,8 @@ public class UserController {
 	@Autowired
 	HttpSession session;
 
+	@Autowired
+	EmailService emailService;
 
 	
 	//get the user by his id
@@ -44,7 +47,10 @@ public class UserController {
 	@PostMapping("/insert")
 	public ResponseEntity<DomainResponse> post(@RequestBody User_Detail user){
 		System.out.println("-------------------------------------reached into controller1--------------------------------------------");
+		user.setStatus("Approved");
+		
 		userDao.add(user);
+		emailService.approvedUserMessage(user);
 		System.out.println("-------------------------------user adeed successfully--------------");
 		return new ResponseEntity<DomainResponse> (new DomainResponse("user recieved the data",100), HttpStatus.OK);
 	}
@@ -186,7 +192,8 @@ public class UserController {
 			System.out.println("reached into login");
 			user = userDao.authenticate(user.getUserId(), user.getPassword());
 			System.out.println("id and password given to user");
-				userDao.setOnline(user.getUserId());;
+				//userDao.setOnline("y");;
+			
 				session.setAttribute("CurrentUserID", user.getUserId());
 				int CurrentUserID = (int) session.getAttribute("CurrentUserID");
 				System.out.println("logged in user id is:"+CurrentUserID);
@@ -194,18 +201,18 @@ public class UserController {
 				String CurrentUserRole = (String) session.getAttribute("CurrentUserRole");
 				System.out.println("logged in user Role is:"+CurrentUserRole);
 				//friendDAO.setOnline(user.getId());
+				user.setIsOnline("y");
 				userDao.setOnline(user.getUserId());
 			return new ResponseEntity<User_Detail>(user, HttpStatus.OK);
 		}
 
 		//method to logout user
 		//tested with postman
-		@RequestMapping(value = "/logout", method = RequestMethod.GET)
-		public ResponseEntity<DomainResponse> logout(HttpSession session) {
-			int CurrentUserID = (int) session.getAttribute("CurrentUserID");
-			System.out.println("logged in user id is:"+CurrentUserID);
-			userDao.setOffLine(CurrentUserID);
-			session.invalidate();
+		@RequestMapping(value = "/logout/{id}", method = RequestMethod.GET)
+		public ResponseEntity<DomainResponse> logout(@PathVariable("id") int id) {
+			User_Detail user = userDao.getUserDetail(id);
+			user.setIsOnline("n");
+			userDao.update(user);
 			System.out.println("id and password released off");
 			return new ResponseEntity<DomainResponse> (new DomainResponse("Successfully logged out",100), HttpStatus.OK);
 		};

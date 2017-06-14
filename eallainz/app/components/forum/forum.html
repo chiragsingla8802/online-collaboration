@@ -1,0 +1,68 @@
+
+<div  class="container" ng-controller="ForumController as forCtrl">
+<div ng-init="forCtrl.viewForum()">
+                   <div>
+                            <h4>{{forCtrl.singleForum.name}}</h4>
+                             <p>Started by: {{forCtrl.singleForum.userName}}</p>
+                              <p>{{forCtrl.singleForum.description}}</p>
+                            <!--<a ng-click="forCtrl.joinRequest()">JOIN FORUM</a>-->
+                        </div>
+                   
+
+                            <h4>Leave a Post</h4>
+                            <form id="newForumPost" name="newForumPost" ng-submit="forCtrl.addForumPost()" class="col s12" style="margin-bottom: 50px;">
+                                <input type="hidden" ng-model="forCtrl.ForumPost.id" />
+
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <input id="title" type="text" class="validate" ng-model="forCtrl.ForumPost.title">
+                                        <label for="title">Title</label>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="row">
+                                        <div class="input-field col s12">
+                                            <textarea id="comment" class="materialize-textarea" ng-model="forCtrl.ForumPost.description"></textarea>
+                                            <label for="comment">Comment</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <button type="submit" class="waves-effect waves-light btn-large" style="margin-top: 10px; left: 20px;">Post</button>
+                                </div>
+                            </form>
+                            
+      
+        <!-- If no posts are available -->
+        <div ng-if="(forCtrl.singleForum.noOfPosts == 0)">
+             <div class="card hoverable" style="height: 200px;">
+                <h3 style="padding-top: 75px; padding-left: 250px;">No Posts Yet!</h3>
+           </div>
+        </div>
+
+        <!-- If posts are available -->
+        <div ng-if="forCtrl.singleForum.noOfPosts != 0">
+
+            <div class="card hoverable" ng-repeat="post in forCtrl.forumPostsList | orderBy : 'id'">
+            <div style=" padding-top: 40px; padding-bottom: 40px;" >
+                <div class="row">
+                    <div class="col m3" style="margin-top: 20px" >
+                        <p>Posted by: {{post.username}}</p>
+                    </div>
+                    <div class="col m9">
+                        <h4>{{post.title}}</h4>
+                        <p>{{post.description}} </p>
+                    </div>
+                </div>
+            </div>
+            </div>
+
+            
+        </div>
+
+       
+    </div>
+    
+</div>

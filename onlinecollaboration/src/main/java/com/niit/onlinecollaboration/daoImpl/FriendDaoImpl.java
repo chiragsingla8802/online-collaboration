@@ -24,71 +24,7 @@ public class FriendDaoImpl implements FriendDao {
 		this.sessionFactory = sessionFactory;
 	}
 
-	/*@Transactional
-	public boolean saveOrUpdate(Friend friend) {
-		try {
-			sessionFactory.getCurrentSession().saveOrUpdate(friend);
-			return true;
-		} catch (HibernateException e) {
-			return false;
-		}
-
-	}*/
-
-	/*@Transactional
-	public boolean delete(Friend friend) {
-		try {
-			sessionFactory.getCurrentSession().delete(friend);
-			return true;
-		} catch (HibernateException e) {
-			return false;
-		}
-	}*/
-
-	/*@Transactional
-	public Friend get(int userId, int friendId) {
-		String hql = "from Friend where userId = "+userId+" and friendId = "+friendId;
-		Query query = sessionFactory.getCurrentSession().createQuery(hql);
-		try {
-			return (Friend) query.getSingleResult();
-		} catch (Exception e) {
-			return null;
-		}
-	}*/
-
-	/*@Transactional
-	public List<Friend> list() {
-		String hql = "from Friend";
-		return sessionFactory.getCurrentSession().createQuery(hql).list();
-	}*/
-
-	/*@Override
-	@Transactional
-	public List<Friend> getFriends(int userId) { 
-		String hql = "from Friend where userId = "+userId+" and status = 'ACCEPT'";
-		return sessionFactory.getCurrentSession().createQuery(hql).list();
-	}*/
 	
-	
-	
-	/*@Override
-	@Transactional
-	public List<Friend> getRequest(int userId) {
-		String hql = "from Friend where friendId = "+userId+" and status = 'PENDING'";
-		return sessionFactory.getCurrentSession().createQuery(hql).list();
-	}*/
-
-	
-	/*@Override
-	@Transactional
-	public List<Friend> getTopFriends(int n) {
-		String hql = "FROM Friend WHERE status = 'ACCEPT' ORDER BY id DESC";
-		Query query = sessionFactory.getCurrentSession().createQuery(hql);
-		query.setFirstResult(1);
-		query.setMaxResults(n);
-		return query.getResultList();
-	}*/
-
 	@Override
 	@Transactional
 	public boolean addFriend(Friend friends) {
@@ -104,8 +40,7 @@ public class FriendDaoImpl implements FriendDao {
 	@Override
 	@Transactional
 	public List<Friend> list(int userId) {
-		//String hql = "FROM Friend where friendId = "+userId;
-		return sessionFactory.getCurrentSession().createQuery("FROM Friend where friendId = "+userId).list();
+		return sessionFactory.getCurrentSession().createQuery("FROM Friend where userId2 = "+userId).list();
 	}
 
 	@Override
@@ -124,13 +59,27 @@ public class FriendDaoImpl implements FriendDao {
 	@Override
 	@Transactional
 	public List<User_Detail> myFriends(int id) {
-		String selectQuery = "SELECT * FROM User_Detail WHERE userId IN (SELECT userId1 FROM Friend WHERE (userId2 = :id OR userId1 = :id) AND STATUS = 'APPROVED' UNION SELECT userId2 FROM Friend WHERE (userId2 = :id OR userId1 = :id) AND STATUS = 'APPROVED')";
+		String selectQuery = "SELECT * FROM USER_DETAIL WHERE userId IN (SELECT userId1 FROM FRIEND WHERE userId2 ='"+ id +"'UNION SELECT userId2 FROM FRIEND WHERE userId1 = '"+ id +"') AND STATUS = 'Approved'";
+		//String selectQuery="(SELECT userId1 FROM FRIEND WHERE userId2 ='"+ id +"' AND STATUS = 'Approved') UNION (SELECT userId2 FROM FRIEND WHERE userId1 = '"+ id +"' AND STATUS = 'Approved')";
+		return sessionFactory.getCurrentSession().createNativeQuery(selectQuery,User_Detail.class).getResultList();
+		//return sessionFactory.getCurrentSession().createQuery(selectQuery).list();
+		//return sessionFactory.getCurrentSession().createQuery("FROM Friend WHERE userId2 = '"+ id +"' OR userId1 = '"+ id +"' AND STATUS = 'Approved'", Friend.class).list();
+	}
+
+	@Override
+	@Transactional
+	public List<User_Detail> noFriends(int id) {
+		
+		String selectQuery = "SELECT * FROM USER_DETAIL WHERE userId NOT IN (SELECT userId1 FROM FRIEND WHERE userId2 = :id OR userId1 = :id UNION SELECT userId2 FROM FRIEND WHERE userId2 = :id OR userId1 = :id) AND STATUS = 'Approved'";
+		
 		return sessionFactory
 				.getCurrentSession()
 					.createNativeQuery(selectQuery,User_Detail.class)
 						.setParameter("id", id)
 							.getResultList();
+		
 	}
+
 
 
 	}

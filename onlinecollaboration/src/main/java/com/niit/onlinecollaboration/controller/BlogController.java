@@ -47,7 +47,7 @@ public class BlogController {
 	@PostMapping("/insert")
 	public ResponseEntity<DomainResponse> post(@RequestBody Blog blog, HttpSession session){
 		System.out.println("-------------------------------------reached into controller1--------------------------------------------");
-		//blog.setUserId(CurrentUserID);
+		blog.setBlogStatus("pending");
 		blogDao.addBlog(blog);
 		System.out.println("-------------------------------blog adeed successfully--------------");
 		return new ResponseEntity<DomainResponse> (new DomainResponse("blog table recieved the data",100), HttpStatus.OK);

@@ -38,17 +38,17 @@
 	<!--</hr>-->
 
 	<!--<div ng-show="currentUser.role=='admin'" ng-include="'./app/components/user/admin-navbar.html'"></div>-->
-	<div ng-include="'./app/components/user/user-navbar.html'"></div>
-	
-
+	<!--<div ng-include="'./app/components/user/user-navbar.html'"></div>-->
 	<div ng-view></div>
-<div ng-include="'./app/components/page/footer1.html'"></div>
+<!--<div ng-include="'./app/components/page/footer1.html'"></div>-->
 </body>
  
 <script src="./bower_components/angular/angular.js"></script>
 <script src="./bower_components/angular-route/angular-route.js"></script> 
 <script src="./bower_components/angular-cookies/angular-cookies.js"></script>
-
+<script type="text/javascript" src="assets/sockjs.js"></script>
+<script type="text/javascript" src="assets/stomp.js"></script>
+<script type="text/javascript" src="assets/myhome.js"></script>
 
 <script src="./app/app.js"></script>
 <script src="./app/components/user/UserController.js"></script>
@@ -59,4 +59,8 @@
 <script src="./app/components/job/JobServices.js"></script>
 <script src="./app/components/friend/FriendController.js"></script>
 <script src="./app/components/friend/FriendService.js"></script>
+<script src="./app/components/forum/ForumController.js"></script>
+<script src="./app/components/forum/ForumServices.js"></script>
+<script src="./app/components/chat/chatController.js"></script>
+<script src="./app/components/chat/chatService.js"></script>
 </html>

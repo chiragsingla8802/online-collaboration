@@ -1,6 +1,29 @@
 <head>
 
 <style>
+ 
+	section{
+		padding-left: 15px;
+	}
+
+    body
+{
+    background:url('././assets/1.jpg') fixed;
+    background-size: cover;
+    padding: 0;
+    margin: 0;
+}
+
+.wrap
+{
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 99;
+}
 a:link {
     color: green;
     background-color: transparent;
@@ -21,8 +44,82 @@ a:active {
     background-color: transparent;
     text-decoration: underline;
 }
+/*body{
+    width:100%;
+    height:100%;
+    background-color:#fff;
+    }
+.carousel-inner,.carousel,.item,.container,.fill {
+  height:10%;
+  width:100%;
+  background-position:center center;
+  background-size:cover;
+}
+.slide-wrapper{display:inline;}
+.slide-wrapper .container{padding:0px;}
+
+
+
+.carousel-inner> .item.next ,  .carousel-inner > .item.active.right{ transform: translate3d(0, 100%, 0); -webkit-transform: translate3d(0, 100%, 0); -ms-transform: translate3d(0, 100%, 0); -moz-transform: translate3d(0, 100%, 0); -o-transform: translate3d(0, 100%, 0);  top: 0;}
+.carousel-inner > .item.prev ,.carousel-inner > .item.active.left{ transform: translate3d(0,-100%, 0); -webkit-transform: translate3d(0,-100%, 0);  -moz-transform: translate3d(0,-100%, 0);-ms-transform: translate3d(0,-100%, 0); -o-transform: translate3d(0,-100%, 0); top: 0;}
+.carousel-inner > .item.next.left , .carousel-inner > .item.prev.right , .carousel-inner > .item.active{transform:translate3d(0,0,0); -webkit-transform:translate3d(0,0,0);-ms-transform:translate3d(0,0,0);; -moz-transform:translate3d(0,0,0); -o-transform:translate3d(0,0,0); top:0;}
+
+
+.carousel-indicators{
+position:absolute;
+top:0;
+bottom:0;
+margin:auto;
+height:20px;
+right:10px; left:auto;
+width:auto;
+}
+.carousel-indicators li{display:block; margin-bottom:5px; border:1px solid #00a199; }
+.carousel-indicators li.active{margin-bottom:5px; background:#00a199;}*/
 </style>
 </head>
+
+<body>
+<!--<section class="slide-wrapper">
+<div class="container">
+<div id="myCarousel" class="carousel slide">
+ 
+    <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="1"></li>
+      <li data-target="#myCarousel" data-slide-to="2"></li>
+      <li data-target="#myCarousel" data-slide-to="3"></li>
+    </ol>
+
+    
+    <div class="carousel-inner">
+      <div class="item active">
+        <div class="fill" style=" background-color:#48c3af;"> 
+            <img src="././assets/1.jpg" >
+            </div>
+             </div>
+
+              <div class="item">
+        <div class="fill" style=" background-color:#b33f4a;"> 
+            <img src="././assets/2.jpg" >
+            </div>
+             </div>
+
+              <div class="item">
+        <div class="fill" style=" background-color:#7fc2f4;"> 
+            <img src="././assets/3.jpg" >
+            </div>
+             </div>
+
+             <div class="item">
+        <div class="fill" style=" background-color:#e47794;"> 
+            <img src="././assets/4.jpg" >
+            </div>
+             </div>
+    </div>
+</div>
+</div>
+</section>-->
 <div ng-controller="UserController as ctrl">
 <br>
 <br>
@@ -38,19 +135,14 @@ a:active {
         <div class="container">
 You logged in as a ::<b>{{currentUser.role}}</b>
 <br>
-          <a href="#!/myProfile" >My Profile</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="#!/myProfile" >My Profile</a>&nbsp;&nbsp;&nbsp;&nbsp;
 		<a href="#!/memberslist" >All Users</a>&nbsp;&nbsp;&nbsp;&nbsp;
         <a href="#!/friendRequests" >Pending Friends Request</a>&nbsp;&nbsp;&nbsp;&nbsp;
-         <a href="#!/myfriends" >My Friends</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="#!/myfriends" >My Friends</a>&nbsp;&nbsp;&nbsp;&nbsp;
 		<a href="#!/createblog">Create Blog</a>&nbsp;&nbsp;&nbsp;&nbsp;
 		<a href="#!/listblog">List Blog</a>&nbsp;&nbsp;&nbsp;&nbsp;
-		<!--<a href="#!/myblog">My Blog</a>&nbsp;&nbsp;&nbsp;&nbsp;-->
-		
-		<a href="#!/search_job">Search Job</a>&nbsp;&nbsp;&nbsp;&nbsp;
-		<!--<a href="#!/view_applied_job">View Applied Job</a>&nbsp;&nbsp;&nbsp;&nbsp;-->
-		<!--<a href="#!/chat">Group Chat</a>&nbsp;&nbsp;&nbsp;&nbsp;-->
-		<!--<a href="#!/friendRequests">Pending Friends Request</a>&nbsp;&nbsp;&nbsp;&nbsp;-->
-		
+        <a href="#!/forumlist">Forum list</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="#!/login" ng-click="ctrl.logout()">logout</a>&nbsp;&nbsp;&nbsp;&nbsp;
                 <div class="col-md-10">
 
                     <div>
@@ -143,4 +235,3 @@ Why have these solutions advanced only to silver-medal status instead of the gol
  
 </section>
   </div>
-  

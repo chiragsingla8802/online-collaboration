@@ -5,7 +5,7 @@ app.config(function($routeProvider) {
   $routeProvider
 
   .when('/', {
-    templateUrl : './app/components/user/home.html',
+    templateUrl : './app/components/user/user-navbar.html',
     controller : 'UserController'
    
   })
@@ -89,24 +89,6 @@ app.config(function($routeProvider) {
    
   })
 
-  // .when('/searchFriend', {
-  //   templateUrl : './app/components/friend/searchFriend.html',
-  //   controller : 'FriendController'
-   
-  // })
-
-  // .when('/pendingFriend', {
-  //   templateUrl : './app/components/user/pendingFriend.html',
-  //   controller : 'FriendController'
-   
-  // })
-
-
-  //  .when('/listfriend', {
-  //   templateUrl : './app/components/user/listfriend.html',
-  //   controller : 'FriendController'
-   
-  // })
 
   .when('/memberslist', {
     templateUrl : './app/components/friend/memberslist.html',
@@ -150,72 +132,47 @@ app.config(function($routeProvider) {
    
   })
 
- 
+  .when('/forum/:id', {
+    templateUrl : './app/components/forum/forum.html',
+    controller : 'ForumController'
+   
+  })
+
+
+  .when('/createForum', {
+    templateUrl : './app/components/forum/createForum.html',
+    controller : 'ForumController'
+   
+  })
+
+  .when('/forumlist', {
+    templateUrl : './app/components/forum/forumlist.html',
+    controller : 'ForumController'
+   
+  })
+
+  .when('/forumRequests', {
+    templateUrl : './app/components/forum/forumRequests.html',
+    controller : 'ForumController'
+   
+  })
+
+  .when('/manageForums', {
+    templateUrl : './app/components/forum/manageForums.html',
+    controller : 'ForumController'
+   
+  })
+
+ .when('/chat/:id/:username', {
+    templateUrl : './app/components/chat/chat.html',
+    controller : 'chatController'
+   
+  })
+
 
   .otherwise({redirectTo: '/'});
 });
 
 
-
-// app.run(function($rootScope,$location,$cookieStore,$http){
-
-// 	 $rootScope.$on('$locationChangeStart', function (event, next, current) {
-		 
-// 		 console.log("$locationChangeStart");
-// 		 //http://localhost:8080/Collaboration/addjob
-// 	        // redirect to login page if not logged in and trying to access a restricted page
-	     
-// 		 var userPages = ['/myProfile','/createblog','/updateuser','/searchFriend','/homme','/chat','/search','/chatp','/view_applied_job','/register','/sortblog','/view_job_details'];
-// 		 var adminPages = ['/post_job','/adminhome','/manageusers','/rest','/sortjob'];
-		 
-// 		 var currentPage = $location.path();
-		 
-// 		 var isUserPage = $.inArray(currentPage, userPages) ===0;
-// 		 var isAdminPage = $.inArray(currentPage, adminPages) ===0;
-		 
-// 		 var isLoggedIn = $rootScope.currentUser.userid;
-// 	       // var privatefriend=$rootScope.friend;
-// 	     console.log("isLoggedIn:" +isLoggedIn);
-// 	     console.log("isUserPage:" +isUserPage);
-// 	     console.log("isAdminPage:" +isAdminPage);
-	        
-// 	        if(!isLoggedIn)
-// 	        	{
-	        	
-// 	        	 if (isUserPage || isAdminPage) {
-// 		        	  console.log("Navigating to login page:")
-// 		        	  alert("You need to loggin to do this operation")
-
-// 						            $location.path('/');
-// 		                }
-// 	        	}
-	        
-// 			 else //logged in
-// 	        	{
-	        	
-// 				 var role = $rootScope.currentUser.role;
-				 
-// 				 if(isAdminPage===0 && role!='admin' )
-// 					 {
-					 
-// 					  alert("You can not do this operation as you are logged as : " + role )
-// 					   $location.path('/login');
-					 
-// 					 }
-				     
-	        	
-// 	        	}
-	        
-// 	 }
-// 	       );
-	 
-	 
-// 	 // keep user logged in after page refresh
-//     $rootScope.currentUser = $cookieStore.get('currentUser') || {};
-//     if ($rootScope.currentUser) {
-//         $http.defaults.headers.common['Authorization'] = 'Basic' + $rootScope.currentUser; 
-//     }
-
-// });
 
 
